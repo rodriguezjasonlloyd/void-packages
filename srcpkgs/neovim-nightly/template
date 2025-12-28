@@ -1,0 +1,16 @@
+# Template file for 'neovim-nightly'
+pkgname=neovim-nightly
+version=0.12.0
+revision=1
+build_style="cmake"
+makedepends="LuaJIT-devel libluv-devel libutf8proc-devel lua51-lpeg tree-sitter-devel unibilium-devel"
+short_desc="Fork of Vim aiming to improve user experience, plugins and GUIs"
+maintainer="jason <rodriguezjasonlloyd@gmail.com>"
+license="Apache-2.0 AND Vim"
+homepage="https://neovim.io"
+distfiles="https://github.com/neovim/neovim/archive/refs/tags/nightly.tar.gz"
+checksum=d23f01de3e54753c4e542b6392f78937d0dd17dacc19824fa5aeba1ac865da50
+
+post_install() {
+	vlicense LICENSE.txt
+}
