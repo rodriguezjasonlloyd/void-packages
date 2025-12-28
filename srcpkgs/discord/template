@@ -11,44 +11,44 @@ license="custom:Proprietary"
 homepage="https://discord.com"
 distfiles="https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz"
 checksum=fcd7e01c15ec5166280c4546cf5dc6054d484a949d0793a6ae3852376e5204c8
-repository=nonfree
-restricted=yes
 nopie=yes
+restricted=yes
+repository=nonfree
 nostrip=yes
+noshlibprovides=yes
 
 do_install() {
 	local package_location="usr/lib/$pkgname" item
 	vmkdir usr/share/pixmaps
-	vcopy discord.png /usr/share/pixmaps/
+	vinstall discord.png 644 /usr/share/pixmaps/
 	vmkdir usr/share/applications
 	vcopy discord.desktop /usr/share/applications/
 	vmkdir ${package_location}
-	chmod +x Discord
 	for item in \
-		locales \
-		resources \
 		Discord \
-		libffmpeg.so \
-		snapshot_blob.bin \
+		chrome-sandbox \
+		chrome_100_percent.pak \
+		chrome_200_percent.pak \
+		chrome_crashpad_handler \
 		discord.png \
 		icudtl.dat \
 		libEGL.so \
 		libGLESv2.so \
-		chrome_100_percent.pak \
-		chrome_200_percent.pak \
-		chrome-sandbox \
-		chrome_crashpad_handler \
-		resources.pak \
-		libvulkan.so.1 \
-		v8_context_snapshot.bin \
-		postinst.sh \
+		libffmpeg.so \
 		libvk_swiftshader.so \
+		libvulkan.so.1 \
+		locales \
+		postinst.sh \
+		resources \
+		resources.pak \
+		snapshot_blob.bin \
+		v8_context_snapshot.bin \
 		vk_swiftshader_icd.json
 	do
 		vcopy "${item}" "${package_location}"
 	done
 	vmkdir usr/bin
-	ln -sfr $DESTDIR/${package_location}/Discord $DESTDIR/usr/bin/Discord
+	ln -sfr $DESTDIR/${package_location}/Discord $DESTDIR/usr/bin/discord
 }
 
 post_install() {
