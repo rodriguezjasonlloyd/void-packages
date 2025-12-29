@@ -1,0 +1,22 @@
+# Template file for 'nerd-fonts-sourcecodepro'
+pkgname=nerd-fonts-sourcecodepro
+version=3.4.0
+revision=1
+short_desc="Iconic font aggregator collection - SourceCodePro"
+maintainer="jason <rodriguezjasonlloyd@gmail.com>"
+license="OFL-1.1"
+homepage="https://nerdfonts.com/"
+distfiles="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/SourceCodePro.tar.xz"
+checksum=d52d97b66c4c5d6d9d99c88df55148faf39738f244485026f22f8e47407744f4
+
+do_install() {
+	vmkdir usr/share/fonts/NerdFonts/ttf/SourceCodePro
+
+	for font in *.ttf; do
+		[ -f "$font" ] && vinstall "$font" 644 usr/share/fonts/NerdFonts/ttf/SourceCodePro
+	done
+}
+
+post_install() {
+	vlicense LICENSE.txt
+}
