@@ -1,0 +1,20 @@
+# Template file for 'wpaperd'
+pkgname=wpaperd
+version=1.2.2
+revision=1
+build_style=cargo
+make_install_args="--path daemon"
+hostmakedepends="pkg-config"
+makedepends="wayland-devel libglvnd-devel"
+short_desc="Modern wallpaper daemon for Wayland"
+maintainer="jason <rodriguezjasonlloyd@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/danyspin97/wpaperd"
+distfiles="https://github.com/danyspin97/wpaperd/archive/refs/tags/${version}.tar.gz"
+checksum=16320b90cadd7a8ba7498b89d6142e47dcffcc8ea8ace04b28f8793d2c313ddf
+
+post_install() {
+	vcompletion target/$RUST_TARGET/release/completions/${pkgname}.bash bash
+	vcompletion target/$RUST_TARGET/release/completions/_${pkgname} zsh
+	vcompletion target/$RUST_TARGET/release/completions/${pkgname}.fish fish
+}
